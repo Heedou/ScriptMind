@@ -10,18 +10,16 @@ Each entry represents one conversation sample with its metadata.
 
 ```json
 {
-  "0": {
-    "conversation": "Victim: Hello? / Scammer: This is from the National Tax Service...",
-    "vishing": "vishing",
-    "source": "dataset_A",
-    "output": {}
+  "conv_6133": {
+  "conversation": "So, you have no knowledge about this at all?\nAlright, I understand.\nHave you ever visited the [address] branch yourself?\nThis is the Seoul Central District Prosecutors’ Office.\nOkay. So, you haven’t been there personally, right?\nYes. The bank account we found was opened around August 2015 at the [address] branch.\nThat’s why I asked you earlier.\nIn the past three years, have you ever lost your wallet, ID, or any personal items that could have led to a data leak?\nAccording to our cross-check with the financial institution, this account is indeed registered under your name.",
+  "output": {
+    "label": "vishing",
+    "next_utterance": "The scammer’s next expected statement would be something like: We’re contacting you from the prosecution office to determine whether you personally opened this account and transferred it for money, or if your identity was stolen and you’re a victim of impersonation.",
+    "rationale": "The scammer is currently trying to confirm whether the victim’s personal information was stolen and will likely proceed to question whether the victim sold the account or was impersonated, aiming to establish a false investigative context."
   },
-  "1": {
-    "conversation": "Caller: Your bank account needs verification...",
-    "vishing": "non_vishing",
-    "source": "dataset_B",
-    "output": {}
-  }
+  "vishing": "vishing",
+  "source": "voice_phishing"
+}
 }
 ```
 
