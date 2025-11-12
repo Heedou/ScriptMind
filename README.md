@@ -23,7 +23,6 @@ Each entry represents one conversation sample with its metadata.
 }
 ```
 
----
 The dataset used in this research is available via the link below.
 
 - **Dataset Link:** [🔗 Download ](https://drive.google.com/file/d/1WGJId_BOp9b0q3-VYn5etlTP9gXu1lox/view?usp=drive_link)
