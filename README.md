@@ -42,8 +42,6 @@ The command-line argument `--model` accepts one of the following options:
 - `gemini` → Google Gemini (gemini-2.0-flash-001)
 - `claude` → Anthropic Claude (claude-3-5-haiku-20241022)
 
----
-
 ### 🧠 OpenAI GPT
 
 Run evaluation using **ChatGPT (4o-latest)**:
