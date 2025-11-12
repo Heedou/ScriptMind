@@ -51,5 +51,5 @@ The command-line argument `--model` accepts one of the following options:
 Run evaluation using **ChatGPT (4o-latest)**:
 
 ```bash
-python evaluate_vishing.py --model gpt
+python Evaluate_ProprietaryLLMs.py --model gpt
 ```
