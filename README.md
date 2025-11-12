@@ -1,7 +1,7 @@
 # ScriptMind
 
 ---
-# 📂 Input Data Format
+# 1. Input Data Format
 
 The input file should be named **`task_SA_{train, dev, test}.json`**,  
 and must follow the structure shown below.
@@ -31,7 +31,7 @@ The dataset used in this research is available via the link below.
 > Please cite the original authors and this project when using the dataset.
 
 ---
-# 🚀 Running the Evaluation on Proprietary Models
+# 2. Running the Evaluation on Proprietary Models
 
 After setting up your environment and API keys,  
 you can run the evaluation script by specifying which model to use.
@@ -51,7 +51,7 @@ python Evaluate_ProprietaryLLMs.py --model gpt
 
 ---
 
-# 🧩 LLM Output Refinement & Extraction
+# 3. LLM Output Refinement & Extraction
 
 This repository provides a unified post-processing pipeline for refining and extracting structured results from **Large Language Model (LLM)** outputs.  
 It supports both **commercial models** (OpenAI GPT, Gemini, Claude) and **open-source models** (LLaMA, SOLAR, Exaone, etc.).
@@ -93,7 +93,7 @@ python refine_llm_outputs.py
 ```
 
 ---
-# 🤖 LLM-Based Automatic Evaluation for Crime Script Predictions
+# 4. LLM-Based Automatic Evaluation for Crime Script Predictions
 
 This repository provides a unified evaluation framework that automatically scores  
 **LLM-generated predictions** for both the **next utterance** and **rationale** fields  
