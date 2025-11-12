@@ -32,3 +32,24 @@ The dataset used in this research is available via the link below.
 
 > ⚠️ **Note:** This dataset is provided for research and non-commercial use only.  
 > Please cite the original authors and this project when using the dataset.
+
+---
+## 🚀 Running the Evaluation
+
+After setting up your environment and API keys,  
+you can run the evaluation script by specifying which model to use.
+
+The command-line argument `--model` accepts one of the following options:
+- `gpt` → OpenAI GPT (chatgpt-4o-latest)
+- `gemini` → Google Gemini (gemini-2.0-flash-001)
+- `claude` → Anthropic Claude (claude-3-5-haiku-20241022)
+
+---
+
+### 🧠 OpenAI GPT
+
+Run evaluation using **ChatGPT (4o-latest)**:
+
+```bash
+python evaluate_vishing.py --model gpt
+```
