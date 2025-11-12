@@ -1,7 +1,7 @@
 # ScriptMind
 
 ---
-## 📂 Input Data Format
+# 📂 Input Data Format
 
 The input file should be named **`task_SA_{train, dev, test}.json`**,  
 and must follow the structure shown below.
@@ -31,7 +31,7 @@ The dataset used in this research is available via the link below.
 > Please cite the original authors and this project when using the dataset.
 
 ---
-## 🚀 Running the Evaluation on Proprietary Models
+# 🚀 Running the Evaluation on Proprietary Models
 
 After setting up your environment and API keys,  
 you can run the evaluation script by specifying which model to use.
