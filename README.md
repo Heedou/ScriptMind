@@ -160,26 +160,26 @@ settings.yaml            # Global configuration file (paths, model, LoRA, etc.)
 
 1. Configuration Loading
 
-- train_scriptmind.py loads parameters from settings.yaml (based on --omegaconf argument).
+  - train_scriptmind.py loads parameters from settings.yaml (based on --omegaconf argument).
 
-- This includes dataset paths, model backbone, LoRA configuration, and training parameters.
+  - This includes dataset paths, model backbone, LoRA configuration, and training parameters.
 
 2. Dataset Preparation (dataset.py)
 
-- Only two files are used:
+  - Only two files are used:
 
 ```bash
 task_SA_train.json
 task_SA_dev.json
 ```
+  
+  - Each file contains conversational data with two fields:
 
-- Each file contains conversational data with two fields:
+    -- conversation: dialogue text
 
--- conversation: dialogue text
+    -- output: the expected model response or analysis
 
--- output: the expected model response or analysis
-
-- The script converts each JSON file into a HuggingFace Dataset,
+  - The script converts each JSON file into a HuggingFace Dataset,
 adding an instructional prompt format and saving them as:
 
 ```bash
@@ -189,29 +189,29 @@ task_SA_dev_<subsample>.hf
 
 3. Model Loading
 
-- The model backbone is defined in conf.finetune.llm_backbone (e.g., meta-llama/Meta-Llama-3-8B).
+  - The model backbone is defined in conf.finetune.llm_backbone (e.g., meta-llama/Meta-Llama-3-8B).
 
-- If qlora and lora.enabled are set to True, the model loads in 4-bit quantization using BitsAndBytesConfig.
+  - If qlora and lora.enabled are set to True, the model loads in 4-bit quantization using BitsAndBytesConfig.
 
-- Otherwise, it loads the full model directly onto GPU.
+  - Otherwise, it loads the full model directly onto GPU.
 
 4. Fine-Tuning Process (trainer.py)
 
-- The ScriptMindTrainer sets up a PEFT LoRA configuration for parameter-efficient tuning.
+  - The ScriptMindTrainer sets up a PEFT LoRA configuration for parameter-efficient tuning.
 
-- Training and validation datasets are loaded from disk and tokenized.
+  - Training and validation datasets are loaded from disk and tokenized.
 
-- HuggingFace transformers.Trainer handles optimization, evaluation, and checkpoint saving.
+  - HuggingFace transformers.Trainer handles optimization, evaluation, and checkpoint saving.
 
 5. Checkpointing & Logging
-
-- All checkpoints and configuration files are stored under:
+  
+  - All checkpoints and configuration files are stored under:
 
 ```bash
 <conf.path.checkpoint>/<wandb_project>_<group>_<session>/
 ```
 
-- If Weights & Biases (wandb) is enabled, training metrics are automatically logged.
+  - If Weights & Biases (wandb) is enabled, training metrics are automatically logged.
 
 ### 🚀 Running ScriptMind
 
