@@ -51,7 +51,7 @@ python Evaluate_ProprietaryLLMs.py --model gpt
 
 ---
 
-# 🧩 LLM Output Refinement & Extraction Script
+# 🧩 LLM Output Refinement & Extraction
 
 This repository provides a unified post-processing pipeline for refining and extracting structured results from **Large Language Model (LLM)** outputs.  
 It supports both **commercial models** (OpenAI GPT, Gemini, Claude) and **open-source models** (LLaMA, SOLAR, Exaone, etc.).
@@ -91,3 +91,51 @@ Run the following command in your terminal:
 ```bash
 python refine_llm_outputs.py
 ```
+
+---
+# 🤖 LLM-Based Automatic Evaluation for Crime Script Predictions
+
+This repository provides a unified evaluation framework that automatically scores  
+**LLM-generated predictions** for both the **next utterance** and **rationale** fields  
+in scam detection datasets.
+
+It uses an **LLM-as-a-judge** approach: GPT-4o-mini evaluates how semantically similar  
+the model’s generated text is to the expert-annotated ground truth.
+
+
+### 📘 Overview
+
+When testing LLMs for cognitive or situational reasoning (e.g., in voice phishing scenarios),  
+human evaluation is often expensive and inconsistent.  
+This script automates that process by asking another LLM (GPT-4o-mini) to rate prediction quality.
+
+Each output is scored from **0.00 to 1.00**, where:
+- **1.00** → Perfect semantic match (identical meaning and intent)  
+- **0.00** → Completely different or unrelated  
+- **Intermediate (0.XX)** → Partial semantic overlap  
+
+### 📂 Input Format
+
+The script expects a preprocessed CSV file (from previous extraction steps)
+located in the folder SA_experiments/, named as:
+
+```bash
+SA_experiments/{file}_extracted.csv
+```
+
+### 💡 Example Input (task_SA_gpt_test_results_extracted.csv)
+
+```csv
+conversation,gt_next_utterance,pred_next_utterance,gt_rationale,pred_rationale
+"Victim: Hello? / Scammer: This is the National Tax Service.","We’re contacting you to verify a suspicious account.","We need to confirm your bank account.","The scammer impersonates a government officer to gain trust.","The scammer pretends to be an official to deceive the victim."
+```
+
+### 🚀 Running the Evaluation
+
+Run the script by specifying the file name (without _extracted.csv):
+
+```bash
+python llm_auto_eval.py --file task_SA_gpt_test_results
+```
+
+
