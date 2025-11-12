@@ -3,7 +3,7 @@
 ---
 ## 📂 Input Data Format
 
-The input file should be named **`task_SA_test.json`**,  
+The input file should be named **`task_SA_{train, dev, test}.json`**,  
 and must follow the structure shown below.
 
 Each entry represents one conversation sample with its metadata.
