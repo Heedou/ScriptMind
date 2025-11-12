@@ -1,5 +1,29 @@
 # ScriptMind
 
+---
+## 📂 Input Data Format
+
+The input file should be named **`task_SA_test.json`**,  
+and must follow the structure shown below.
+
+Each entry represents one conversation sample with its metadata.
+
+```json
+{
+  "0": {
+    "conversation": "Victim: Hello? / Scammer: This is from the National Tax Service...",
+    "vishing": "vishing",
+    "source": "dataset_A",
+    "output": {}
+  },
+  "1": {
+    "conversation": "Caller: Your bank account needs verification...",
+    "vishing": "non_vishing",
+    "source": "dataset_B",
+    "output": {}
+  }
+}
+```
 
 ---
 The dataset used in this research is available via the link below.
