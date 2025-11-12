@@ -34,7 +34,7 @@ The dataset used in this research is available via the link below.
 > Please cite the original authors and this project when using the dataset.
 
 ---
-## 🚀 Running the Evaluation
+## 🚀 Running the Evaluation on Proprietary Models
 
 After setting up your environment and API keys,  
 you can run the evaluation script by specifying which model to use.
