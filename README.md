@@ -48,3 +48,48 @@ Run evaluation using **ChatGPT (4o-latest)**:
 ```bash
 python Evaluate_ProprietaryLLMs.py --model gpt
 ```
+
+---
+
+# 🧩 LLM Output Refinement & Extraction Script
+
+This repository provides a unified post-processing pipeline for refining and extracting structured results from **Large Language Model (LLM)** outputs.  
+It supports both **commercial models** (OpenAI GPT, Gemini, Claude) and **open-source models** (LLaMA, SOLAR, Exaone, etc.).
+
+---
+
+## 📘 Overview
+
+When LLMs generate conversational classification outputs (e.g., voice phishing detection),  
+their raw responses may include markdown formatting, invalid JSON, or unstructured text.  
+This script cleans and standardizes those outputs, producing a consistent format suitable for evaluation.
+
+### ✅ Key Features
+- Works with **any LLM output CSV**
+- Cleans code blocks (```json, ```python, etc.)
+- Extracts structured fields from JSON or plain text
+- Supports both **valid JSON** and **malformed outputs**
+- Outputs unified columns for ground-truth and predictions
+
+### 📂 Input Format
+
+The script accepts CSV files that contain the following columns:
+
+| Column | Type | Description |
+|--------|------|-------------|
+| **conversation** | string | The dialogue text analyzed by the LLM. |
+| **output** | JSON / dict | Ground-truth structured label (if available). |
+| **output_text** | string | Raw output text from the LLM (may include markdown or invalid JSON). |
+
+### 💡 Example Input (`task_SA_gpt_results.csv`)
+
+```csv
+conversation,output,output_text
+"Hello, this is the National Tax Service...", "{\"label\": \"vishing\"}", "```json\n{\"label\": \"vishing\", \"next_utterance\": \"Please confirm your account.\", \"rationale\": \"Scammer impersonating government.\"}\n```
+```
+### 🚀 Running the Script
+
+Run the following command in your terminal:
+
+python refine_llm_outputs.py
+
