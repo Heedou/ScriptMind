@@ -1,6 +1,6 @@
 # SCRIPTMIND
 
----
+
 # 1. Input Data Format
 
 The input file should be named **`task_SA_{train, dev, test}.json`**,  
