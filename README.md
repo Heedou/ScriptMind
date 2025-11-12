@@ -168,10 +168,10 @@ settings.yaml            # Global configuration file (paths, model, LoRA, etc.)
 
    - Only two files are used:
 
-```bash
-task_SA_train.json
-task_SA_dev.json
-```
+      ```bash
+      task_SA_train.json
+      task_SA_dev.json
+      ```
   
    - Each file contains conversational data with two fields:
 
@@ -182,10 +182,10 @@ task_SA_dev.json
    - The script converts each JSON file into a HuggingFace Dataset,
 adding an instructional prompt format and saving them as:
 
-```bash
-task_SA_train_<subsample>.hf
-task_SA_dev_<subsample>.hf
-```
+    ```bash
+    task_SA_train_<subsample>.hf
+    task_SA_dev_<subsample>.hf
+    ```
 
 3. Model Loading
 
@@ -207,9 +207,9 @@ task_SA_dev_<subsample>.hf
   
    - All checkpoints and configuration files are stored under:
 
-```bash
-<conf.path.checkpoint>/<wandb_project>_<group>_<session>/
-```
+    ```bash
+    <conf.path.checkpoint>/<wandb_project>_<group>_<session>/
+    ```
 
    - If Weights & Biases (wandb) is enabled, training metrics are automatically logged.
 
