@@ -138,4 +138,146 @@ Run the script by specifying the file name (without _extracted.csv):
 python llm_auto_eval.py --file task_SA_gpt_test_results
 ```
 
+---
+
+# ScriptMind Fine-Tuning Framework
+
+ScriptMind is a streamlined framework for fine-tuning large language models (LLMs) on domain-specific conversational datasets.
+It is derived from the original LAPIS project and simplified to focus on a single fine-tuning task using
+task_SA_train.json and task_SA_dev.json.
+
+### 📂 Project Structure
+
+```bash
+scriptmind/
+ ├── dataset.py          # Loads and formats datasets for fine-tuning
+ ├── trainer.py          # Defines the fine-tuning trainer logic
+train_scriptmind.py      # Main entry script
+settings.yaml            # Global configuration file (paths, model, LoRA, etc.)
+```
+
+### ⚙️ Overview of Execution Flow
+
+1. Configuration Loading
+
+- train_scriptmind.py loads parameters from settings.yaml (based on --omegaconf argument).
+
+- This includes dataset paths, model backbone, LoRA configuration, and training parameters.
+
+2. Dataset Preparation (dataset.py)
+
+- Only two files are used:
+
+```bash
+task_SA_train.json
+task_SA_dev.json
+```
+
+- Each file contains conversational data with two fields:
+
+-- conversation: dialogue text
+
+-- output: the expected model response or analysis
+
+- The script converts each JSON file into a HuggingFace Dataset,
+adding an instructional prompt format and saving them as:
+
+```bash
+task_SA_train_<subsample>.hf
+task_SA_dev_<subsample>.hf
+```
+
+3. Model Loading
+
+- The model backbone is defined in conf.finetune.llm_backbone (e.g., meta-llama/Meta-Llama-3-8B).
+
+- If qlora and lora.enabled are set to True, the model loads in 4-bit quantization using BitsAndBytesConfig.
+
+- Otherwise, it loads the full model directly onto GPU.
+
+4. Fine-Tuning Process (trainer.py)
+
+- The ScriptMindTrainer sets up a PEFT LoRA configuration for parameter-efficient tuning.
+
+- Training and validation datasets are loaded from disk and tokenized.
+
+- HuggingFace transformers.Trainer handles optimization, evaluation, and checkpoint saving.
+
+5. Checkpointing & Logging
+
+- All checkpoints and configuration files are stored under:
+
+```bash
+<conf.path.checkpoint>/<wandb_project>_<group>_<session>/
+```
+
+- If Weights & Biases (wandb) is enabled, training metrics are automatically logged.
+
+### 🚀 Running ScriptMind
+
+1. Environment Setup
+
+```bash
+conda create -n scriptmind python=3.10
+conda activate scriptmind
+pip install torch transformers datasets peft omegaconf bitsandbytes wandb setproctitle
+```
+
+2. Directory Layout
+
+```bash
+dataset/
+ ├── task_SA_train.json
+ ├── task_SA_dev.json
+settings.yaml
+```
+
+Ensure your settings.yaml contains valid paths, e.g.:
+
+```yaml
+path:
+  dataset: ./dataset
+  checkpoint: ./checkpoints
+
+dataprep:
+  raw_dataset: ./dataset
+  finetuning_dataset: ./dataset
+  subsample: 1.0
+
+finetune:
+  llm_backbone: meta-llama/Meta-Llama-3-8B
+  per_device_train_batch_size: 2
+  gradient_accumulation_steps: 4
+  num_train_epochs: 3
+  learning_rate: 1e-4
+  fp16: true
+  optim: adamw_torch
+  report_to: wandb
+  lora:
+    enabled: true
+    qlora: true
+    r: 8
+    alpha: 16
+    dropout: 0.05
+    bias: none
+    task_type: CAUSAL_LM
+
+```
+3. Run Fine-Tuning
+
+```bash
+python train_scriptmind.py --omegaconf dev
+```
+
+This command will:
+
+- Load and process the two SA task datasets.
+
+- Initialize and optionally quantize the LLM.
+
+- Start LoRA-based fine-tuning.
+
+- Save checkpoints and logs to the configured directory.
+
+
 
