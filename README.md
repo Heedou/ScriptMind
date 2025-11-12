@@ -1,4 +1,4 @@
-# ScriptMind
+# SCRIPTMIND
 
 ---
 # 1. Input Data Format
@@ -93,7 +93,7 @@ python refine_llm_outputs.py
 ```
 
 ---
-# 4. LLM-Based Automatic Evaluation for Crime Script Predictions
+# 4. LLM-Based Automatic Evaluation
 
 This repository provides a unified evaluation framework that automatically scores  
 **LLM-generated predictions** for both the **next utterance** and **rationale** fields  
@@ -140,7 +140,7 @@ python llm_auto_eval.py --file task_SA_gpt_test_results
 
 ---
 
-# ScriptMind Fine-Tuning Framework
+# 5. ScriptMind Fine-Tuning Framework
 
 ScriptMind is a streamlined framework for fine-tuning large language models (LLMs) on domain-specific conversational datasets.
 It is derived from the original LAPIS project and simplified to focus on a single fine-tuning task using
